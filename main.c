@@ -17,21 +17,62 @@ int i;
 //--- Término do Campo para criação de variaveis ---// 
 
 //---- Campo para criação das funções----//
-
+void menu ();
 void cadastro();
 void pesquisa();
-//void lista();
+void lista();
 
 //---- Término do  Campo para criação das funções----//
 
 int main (void) {
 	setlocale(LC_ALL, "Portuguese"); // Para admitir que o compilador coloque os acentos.
-	
-    cadastro();
-    pesquisa();
+
+	   	menu();
+	   	return 0;
+
 }
 
-void cadastro (){ // Aqui inicia a funï¿½ï¿½o de cadastro
+void menu(){
+	do{
+		system("cls");
+		printf("\n---MENU----\n1 - Cadastrar\n2 - Listar todos\n3 - Pesquisar\n4 - Sair\n");
+		printf("Digite a opção desejada: ");
+		scanf("%d", &op);
+		switch(op) {
+	  		case 1 :
+	  			cadastro();
+	  			break;
+	  		case 2 :
+	  			lista();
+	  			break;	
+	  		case 3 :
+			  	pesquisa();
+				  break;
+			case 4 :
+				system("exit");
+				break;	 
+			default :
+			printf("Opção inválida");
+			getchar();	
+			getchar();
+		}
+	}while(op!=4);
+}
+
+void lista() {
+	int i;
+	for (i = 0; i < SIZE; i++) {
+	  if(mat[i] > 0){
+		 printf("\nNome: %s\nEmail: %s\nMatricula: %d\nData de admissão: %s\nSalário: %f", nome[i], email[i], mat[i], adm[i], sal[i] );
+	   } else {
+	   		break;
+	    }
+	} 
+	getchar();
+	getchar();
+}
+
+void cadastro (){ // Aqui inicia a função de cadastro
     static int  linha ;
     do {
         printf("\nDigite o nome: ");
@@ -52,7 +93,7 @@ void cadastro (){ // Aqui inicia a funï¿½ï¿½o de cadastro
 
 void pesquisa(){
 	do{
-		printf("\nDigite 1 para pesquisar pela Matricula do funcionário 2 para voltar ao inicio");
+		printf("\nDigite 1 para pesquisar pela Matricula do funcionário 2 para voltar ao inicio: ");
 			scanf("%d", &op);
 		switch(op){
 			case 1 :
@@ -64,14 +105,13 @@ void pesquisa(){
 					}
 				break;
 			case 2 :
-				printf("\nDigite a Matricula: ");
-				//Colocar para voltar ao menu
+				 menu();
 				break;
 			default:
 				printf("\nOpcão Inválida");
 				break;
 		}		
-		printf("\nDigite 1 para coninuar na área de pesquisa");
+		printf("\nDigite 1 para continuar na área de pesquisa : ");
 			scanf("%d", &op);
 	}while(op == 1);
 }
